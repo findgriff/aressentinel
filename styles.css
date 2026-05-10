@@ -231,8 +231,16 @@ body.cursor-hidden .cursor-ring { opacity: 0; }
   .cursor { display: none; }
   body { cursor: auto !important; }
 }
+/* Only suppress the native cursor once JS has confirmed the custom one is active.
+   This avoids a no-cursor state if the script fails to load or is blocked. */
 @media (hover: hover) and (pointer: fine) {
-  body, a, button, input, select, textarea, label { cursor: none; }
+  body.cursor-ready,
+  body.cursor-ready a,
+  body.cursor-ready button,
+  body.cursor-ready input,
+  body.cursor-ready select,
+  body.cursor-ready textarea,
+  body.cursor-ready label { cursor: none; }
 }
 
 /* =========================================================

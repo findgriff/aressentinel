@@ -183,6 +183,8 @@
     var ring = cursor && cursor.querySelector('.cursor-ring');
     if (!cursor || !dot || !ring) return;
 
+    document.body.classList.add('cursor-ready');
+
     var mx = window.innerWidth / 2;
     var my = window.innerHeight / 2;
     var rx = mx, ry = my;     // ring trails the dot
