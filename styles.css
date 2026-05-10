@@ -525,23 +525,6 @@ body.cursor-hidden .cursor-ring { opacity: 0; }
   opacity: .6;
 }
 
-.hero-scan {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(229,204,133,.05) 49%, rgba(229,204,133,.18) 50%, rgba(229,204,133,.05) 51%, transparent 100%);
-  background-size: 100% 200%;
-  background-position: 0 -100%;
-  mix-blend-mode: screen;
-  opacity: .55;
-  animation: heroScan 8s ease-in-out infinite;
-}
-@keyframes heroScan {
-  0%, 20%   { background-position: 0% -100%; opacity: 0; }
-  35%       { opacity: .55; }
-  60%       { background-position: 0% 200%; opacity: .55; }
-  70%, 100% { background-position: 0% 200%; opacity: 0; }
-}
-
 /* radar SVG */
 .hero-radar {
   position: absolute;
@@ -1700,7 +1683,7 @@ body.cursor-hidden .cursor-ring { opacity: 0; }
   .reveal-line > span { transform: none !important; }
   html { scroll-behavior: auto; }
   .marquee-track { animation: none; }
-  .radar-sweep, .radar-pulse, .hero-scan, .hero-glow, .cta-glow { animation: none; }
+  .radar-sweep, .radar-pulse, .hero-glow, .cta-glow { animation: none; }
 }
 
 /* =========================================================
