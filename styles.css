@@ -1761,3 +1761,177 @@ body.cursor-hidden .cursor-ring { opacity: 0; }
   .footer-cols { grid-template-columns: 1fr; }
   .hero-stats { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   Photography — placed sparingly, treated to match the
+   dark gold/black aesthetic (heavy desaturation, vignette,
+   gold gradient overlays).
+   ========================================================= */
+
+/* Hero — large cinematic backdrop behind the radar + headline */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  z-index: 0;
+  opacity: .22;
+  filter: grayscale(35%) contrast(105%) brightness(78%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%,
+              black 30%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%,
+              black 30%, transparent 95%);
+  pointer-events: none;
+}
+/* Ensure the existing glows + grid sit above the photo */
+.hero-glow, .hero-grid, .hero-radar { z-index: 1; }
+.hero-inner { z-index: 2; }
+/* Strengthen the bottom fade so text never has to compete */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 50%;
+  background: linear-gradient(180deg, transparent 0%, var(--bg) 95%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Wide editorial photo between section head and content */
+.section-photo {
+  margin: 0 0 56px;
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  aspect-ratio: 21 / 9;
+  isolation: isolate;
+}
+.section-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(35%) contrast(108%) brightness(82%) saturate(75%);
+  transition: transform 1.4s cubic-bezier(.2,.7,.2,1), filter var(--transition);
+}
+.section-photo:hover img {
+  transform: scale(1.03);
+  filter: grayscale(20%) contrast(110%) brightness(90%) saturate(90%);
+}
+/* Gold gradient veil for premium feel + black bottom fade for legibility */
+.section-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(800px 400px at 80% 20%, rgba(201,169,94,.18), transparent 60%),
+    linear-gradient(180deg, transparent 40%, rgba(7,8,11,.55) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+/* Subtle corner tag */
+.section-photo::before {
+  content: "";
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 18px; height: 18px;
+  border-top: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+  z-index: 2;
+  pointer-events: none;
+}
+/* Heavy desaturation on the problem-section photo to fix the strong blue cast */
+.problem-photo img {
+  filter: grayscale(70%) contrast(112%) brightness(72%) saturate(40%) hue-rotate(-25deg);
+}
+.problem-photo:hover img {
+  filter: grayscale(50%) contrast(112%) brightness(82%) saturate(55%) hue-rotate(-25deg);
+}
+
+/* Why-us photo gets a subtle warm tone (matches the meeting's natural lighting) */
+.why-photo img {
+  filter: grayscale(25%) contrast(112%) brightness(85%) saturate(85%);
+}
+
+/* CRM section: add a photo alongside the mock dashboard */
+.crm-photo {
+  margin: 0 0 16px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  aspect-ratio: 16 / 9;
+  position: relative;
+  isolation: isolate;
+}
+.crm-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(30%) contrast(110%) brightness(80%) saturate(75%);
+  transition: transform 1.4s cubic-bezier(.2,.7,.2,1);
+}
+.crm-photo:hover img { transform: scale(1.03); }
+.crm-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px 300px at 70% 30%, rgba(201,169,94,.18), transparent 60%),
+    linear-gradient(180deg, transparent 50%, rgba(7,8,11,.5) 100%);
+  pointer-events: none;
+}
+
+/* Pull-quote — full backdrop photo with very strong darkening */
+.pull-quote-photo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.pull-quote-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  opacity: .35;
+  filter: grayscale(45%) contrast(110%) brightness(60%) saturate(80%);
+  pointer-events: none;
+}
+.pull-quote-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(800px 500px at 50% 50%, rgba(14,27,51,.4), transparent 70%),
+    linear-gradient(180deg, rgba(7,8,11,.55), rgba(7,8,11,.75)),
+    radial-gradient(600px 300px at 80% 10%, rgba(201,169,94,.18), transparent 60%);
+  z-index: 1;
+  pointer-events: none;
+}
+.pull-quote-photo .container { position: relative; z-index: 2; }
+.pull-quote-photo blockquote { color: var(--text); }
+
+/* Photo credits — tiny attribution in the footer */
+.photo-credits {
+  margin-top: 10px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  opacity: .7;
+}
+
+@media (max-width: 760px) {
+  .section-photo { aspect-ratio: 4 / 3; margin-bottom: 36px; }
+  .hero-photo { opacity: .18; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-photo img, .crm-photo img { transition: none; }
+  .section-photo:hover img, .crm-photo:hover img { transform: none; }
+}
