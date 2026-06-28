@@ -420,6 +420,34 @@ body.cursor-hidden .cursor-ring { opacity: 0; }
 
 .header-cta { padding: 10px 18px; font-size: 0.88rem; }
 
+/* "Client login" link — sits between the nav and the primary CTA, deliberately
+   understated so the gold CTA stays the main visual call to action. */
+.header-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: .005em;
+  transition: color var(--transition), border-color var(--transition),
+              background-color var(--transition);
+  white-space: nowrap;
+}
+.header-login svg { opacity: .75; transition: opacity var(--transition); }
+.header-login:hover {
+  color: var(--gold-bright);
+  border-color: var(--gold);
+  background: rgba(201,169,94,.05);
+}
+.header-login:hover svg { opacity: 1; }
+@media (max-width: 760px) {
+  .header-login { display: none; }   /* mobile uses the nav menu entry instead */
+}
+
 .nav-toggle {
   display: none;
   width: 44px; height: 44px;
